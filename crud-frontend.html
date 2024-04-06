@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Uygulaması</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .btn-success {
+            background-color: green;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <table>
+        <thead>
+        <tr>
+            <th>İsim Soyisim</th>
+            <th>Email</th>
+            <th>Aday yanıtı</th>
+            <th>İşlemler</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(row, index) in data" :key="index">
+            <td>
+                <input v-if="editIndex !== index" :value="row.name" disabled>
+                <input v-else v-model="row.name">
+            </td>
+            <td>
+                <input v-if="editIndex !== index" :value="row.email" disabled>
+                <input v-else v-model="row.email">
+            </td>
+            <td>
+                <input v-if="editIndex !== index" :value="row.status" disabled>
+                <input v-else v-model="row.status">
+            </td>
+            <td>
+                <template v-if="editIndex !== index">
+                    <button class="btn btn-danger" @click="deleteRow(index)">Sil</button>
+                    <button class="btn btn-success" @click="editRow(index)">Güncelle</button>
+                </template>
+                <template v-else>
+                    <button class="btn btn-success" @click="saveRow(index)">Kaydet</button>
+                    <button class="btn" @click="cancelEdit">İptal</button>
+                </template>
+            </td>
+        </tr>
+        <tr v-if="editIndex === null">
+            <td><input v-model="newRow.name" placeholder="İsim Soyisim"></td>
+            <td><input v-model="newRow.email" placeholder="Email"></td>
+            <td><input v-model="newRow.status" placeholder="Aday yanıtı"></td>
+            <td>
+                <button class="btn btn-success" @click="addRow">Ekle</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {   // Vue bileşeninin içinde kullanılacak verileri tutar. 
+            data: [
+                { name: "arda atik", email: "arda@example.com", status: "Olumlu" },
+                { name: "ali yılmaz", email: "ali@example.com", status: "Olumsuz" }
+            ],
+            newRow: { // bir yeni aday ekleme kutucuklarını oldugu yer
+                name: "",
+                email: "",
+                status: ""
+            },
+            editIndex: null
+        },
+        methods: {
+            deleteRow(index) { // silme işleminin yapıldıgı yer
+                this.data.splice(index, 1);
+            },
+            addRow() { //yeni aday ekleme işlemlerinin yapıldıgı yer
+                this.data.push({ name: this.newRow.name, email: this.newRow.email, status: this.newRow.status });
+                this.newRow.name = "";
+                this.newRow.email = "";
+                this.newRow.status = "";
+            },
+            editRow(index) { //aday güncelleme işlemlerinin yapıldıgı yer
+                this.editIndex = index;
+            },
+            saveRow(index) { //adayın kaydedildiği yer
+                this.editIndex = null;
+            },
+            cancelEdit() { // güncellemeyi iptal ettıgıımz yer
+                this.editIndex = null;
+            }
+        }
+    });
+</script>
+</body>
+</html>
