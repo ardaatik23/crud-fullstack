@@ -9,4 +9,5 @@ Projeyi tamamlarken yaşadığım bazı sorunlar;
 3- Backend tarafında aynı değişken için birden fazla tanımlama yapmam(birinciAday ve adayBir gibi aynı kişiler için fazladan değişken olusturmam).
 
 Projenin son hali resimdeki gibidir..
+![Adsız](https://github.com/ardaatik23/crud-fullstack/assets/110181989/a5ca6abc-60b4-4c19-8e42-661fefd0d07f)
 
