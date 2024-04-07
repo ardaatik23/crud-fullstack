@@ -1,4 +1,4 @@
-Bu projede adayların ad-soyad, email, adayın durumu gibi bilgilerin tutulduğu ve bu bilgilere yeni aday ekleme, silme, güncelleme gibi işlemlerin yapıldığı bir web uygulaması tasarlanmıştır. Projeyi yaparken Java, spring boot, mysql, html, css , javascript ve vue.js teknolojilerini kullandım. 
+Bu projede adayların ad-soyad, email, adayın durumu gibi bilgilerin tutulduğu ve bu bilgilere yeni aday ekleme, silme, güncelleme gibi işlemlerin yapıldığı bir web uygulaması olarak tasarlanmıştır. Projeyi yaparken Java, spring boot, mysql, html, css , javascript ve vue.js teknolojilerini kullandım. 
 
 Projeyi tamamlarken yaşadığım bazı sorunlar;
 
